@@ -140,9 +140,8 @@ NexaFlow follows accessibility-focused interface principles including:
 
 ## Theme System
 
-The application supports three appearance modes:
+The application supports two appearance modes:
 
-- System
 - Light
 - Dark
 
