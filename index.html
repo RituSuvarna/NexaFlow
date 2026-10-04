@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NexaFlow is an operations intelligence platform for monitoring workflows, risks, activity and team capacity.">
+    <meta name="theme-color" content="#0f172a">
+    <title>NexaFlow — Operations Intelligence</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-top">
+
+            <div class="brand">
+                <div class="brand-mark" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="brand-copy">
+                    <strong>NexaFlow</strong>
+                    <span>Operations Intelligence</span>
+                </div>
+            </div>
+
+            <button
+                class="mobile-close"
+                id="mobileClose"
+                type="button"
+                aria-label="Close navigation">
+                ×
+            </button>
+
+           
+
+            <nav class="sidebar-nav" aria-label="Main navigation">
+
+                <button class="nav-link active" data-page="overview" type="button">
+                    <span class="nav-icon">⌂</span>
+                    <span class="nav-label">Overview</span>
+                </button>
+
+                <button class="nav-link" data-page="workflows" type="button">
+                    <span class="nav-icon">↗</span>
+                    <span class="nav-label">Workflows</span>
+                    <span class="nav-count">24</span>
+                </button>
+
+                <button class="nav-link" data-page="risks" type="button">
+                    <span class="nav-icon">!</span>
+                    <span class="nav-label">Risk Monitor</span>
+                    <span class="nav-count danger">7</span>
+                </button>
+
+                <button class="nav-link" data-page="activity" type="button">
+                    <span class="nav-icon">◷</span>
+                    <span class="nav-label">Activity</span>
+                </button>
+
+                <button class="nav-link" data-page="reports" type="button">
+                    <span class="nav-icon">▥</span>
+                    <span class="nav-label">Reports</span>
+                </button>
+
+                <button class="nav-link" data-page="team" type="button">
+                    <span class="nav-icon">♙</span>
+                    <span class="nav-label">Team</span>
+                </button>
+
+                <button class="nav-link" data-page="settings" type="button">
+                    <span class="nav-icon">⚙</span>
+                    <span class="nav-label">Settings</span>
+                </button>
+
+            </nav>
+        </div>
+
+        <div class="sidebar-footer">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Operations</strong>
+                    <span>All services operational</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer-meta">
+                <span>NXF-OPS</span>
+                <span>v1.0</span>
+            </div>
+
+        </div>
+    </aside>
+
+
+    <!-- ==================== MAIN AREA ==================== -->
+    <div class="main-shell">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="mobile-menu"
+                    id="mobileMenu"
+                    type="button"
+                    aria-label="Open navigation">
+                    ☰
+                </button>
+
+                <div class="breadcrumb">
+                    <span>NexaFlow</span>
+                    <span>/</span>
+                    <strong id="breadcrumbCurrent">Overview</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-actions">
+
+                <button
+                    class="search-trigger"
+                    id="searchTrigger"
+                    type="button"
+                    aria-label="Search NexaFlow">
+                    <span class="search-icon">⌕</span>
+                    <span class="search-placeholder">Search</span>
+                    <kbd>⌘ K</kbd>
+                </button>
+
+                <button
+                    class="icon-button theme-button"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Change theme"
+                    title="Change theme">
+                    ◐
+                </button>
+
+                <button
+                    class="icon-button notification-button"
+                    id="notificationButton"
+                    type="button"
+                    aria-label="Notifications"
+                    title="Notifications">
+                    ♢
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="user-profile">
+                    <div class="avatar">RT</div>
+
+                    <div class="user-copy">
+                        <strong>Operations Team</strong>
+                        <span>Administrator</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================== SEARCH OVERLAY ==================== -->
+        <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+
+            <div class="search-panel">
+
+                <div class="search-panel-header">
+                    <div>
+                        <span class="panel-kicker">GLOBAL SEARCH</span>
+                        <h2>Find anything</h2>
+                    </div>
+
+                    <button
+                        class="close-button"
+                        id="searchClose"
+                        type="button"
+                        aria-label="Close search">
+                        ×
+                    </button>
+                </div>
+
+                <label class="search-input-wrap">
+                    <span>⌕</span>
+                    <input
+                        id="globalSearch"
+                        type="search"
+                        placeholder="Search workflows, risks, reports..."
+                        autocomplete="off">
+                </label>
+
+                <div class="search-results" id="searchResults">
+
+                    <button class="search-result" data-search-page="workflows" type="button">
+                        <span class="result-icon">↗</span>
+                        <span>
+                            <strong>Workflows</strong>
+                            <small>Monitor active operational workflows</small>
+                        </span>
+                    </button>
+
+                    <button class="search-result" data-search-page="risks" type="button">
+                        <span class="result-icon">!</span>
+                        <span>
+                            <strong>Risk Monitor</strong>
+                            <small>Review operational risks and exposure</small>
+                        </span>
+                    </button>
+
+                    <button class="search-result" data-search-page="reports" type="button">
+                        <span class="result-icon">▥</span>
+                        <span>
+                            <strong>Reports</strong>
+                            <small>Review operational intelligence reports</small>
+                        </span>
+                    </button>
+
+                    <button class="search-result" data-search-page="team" type="button">
+                        <span class="result-icon">♙</span>
+                        <span>
+                            <strong>Team</strong>
+                            <small>View workload and capacity</small>
+                        </span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ==================== MAIN CONTENT ==================== -->
+        <main class="main-content">
+
+
+            <!-- ==================================================
+                 OVERVIEW
+            =================================================== -->
+            <section class="page-section active-page" id="page-overview">
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="eyebrow">OPERATIONS CONTROL CENTER</span>
+                        <h1>Operational overview</h1>
+                        <p>
+                            A live view of workflow performance, risk exposure and team capacity.
+                        </p>
+                    </div>
+
+                    <div class="page-actions">
+                        <button class="secondary-button" type="button" data-action="refresh">
+                            ↻ Refresh
+                        </button>
+
+                        <button class="primary-button" type="button" data-action="report">
+                            Generate report
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <!-- HEALTH BANNER -->
+                <div class="health-banner">
+
+                    <div class="health-main">
+                        <div class="health-ring">
+                            <span>82</span>
+                        </div>
+
+                        <div>
+                            <span class="panel-kicker">OPERATIONAL HEALTH</span>
+                            <h2>Operations are stable</h2>
+                            <p>
+                                Core workflows are performing within expected operating ranges.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="health-meta">
+                        <span class="health-status">
+                            <i></i>
+                            Healthy
+                        </span>
+
+                        <span>Updated 2 min ago</span>
+                    </div>
+
+                </div>
+
+
+                <!-- KEY METRICS -->
+                <div class="metric-grid">
+
+                    <article class="metric-card">
+                        <div class="metric-card-top">
+                            <span>ACTIVE WORKFLOWS</span>
+                            <span class="metric-icon">↗</span>
+                        </div>
+
+                        <strong class="metric-value">24</strong>
+
+                        <div class="metric-footer positive">
+                            <span>↑ 8.4%</span>
+                            <span>vs last week</span>
+                        </div>
+                    </article>
+
+
+                    <article class="metric-card">
+                        <div class="metric-card-top">
+                            <span>OPEN RISKS</span>
+                            <span class="metric-icon warning">!</span>
+                        </div>
+
+                        <strong class="metric-value">7</strong>
+
+                        <div class="metric-footer warning-text">
+                            <span>2 high priority</span>
+                            <span>needs review</span>
+                        </div>
+                    </article>
+
+
+                    <article class="metric-card">
+                        <div class="metric-card-top">
+                            <span>PENDING ACTIONS</span>
+                            <span class="metric-icon">✓</span>
+                        </div>
+
+                        <strong class="metric-value">38</strong>
+
+                        <div class="metric-footer positive">
+                            <span>↓ 12.1%</span>
+                            <span>backlog reduced</span>
+                        </div>
+                    </article>
+
+
+                    <article class="metric-card">
+                        <div class="metric-card-top">
+                            <span>AVG RESPONSE</span>
+                            <span class="metric-icon">◷</span>
+                        </div>
+
+                        <strong class="metric-value">1h 42m</strong>
+
+                        <div class="metric-footer positive">
+                            <span>↓ 18 min</span>
+                            <span>faster than target</span>
+                        </div>
+                    </article>
+
+                </div>
+
+
+                <!-- MAIN DASHBOARD GRID -->
+                <div class="dashboard-grid">
+
+                    <!-- WORKFLOW PULSE -->
+                    <article class="panel workflow-pulse-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-kicker">WORKFLOW INTELLIGENCE</span>
+                                <h2>Workflow pulse</h2>
+                                <p>Execution volume across the current operating window.</p>
+                            </div>
+
+                            <button class="panel-link" type="button" data-page-link="workflows">
+                                View workflows →
+                            </button>
+
+                        </div>
+
+                        <div class="pulse-chart">
+
+                            <div class="chart-y-labels">
+                                <span>100</span>
+                                <span>75</span>
+                                <span>50</span>
+                                <span>25</span>
+                                <span>0</span>
+                            </div>
+
+                            <div class="chart-area">
+
+                                <div class="chart-grid-lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+
+                                <div class="bars">
+
+                                    <div class="bar-column">
+                                        <div class="bar" style="height:42%"></div>
+                                        <span>08</span>
+                                    </div>
+
+                                    <div class="bar-column">
+                                        <div class="bar" style="height:57%"></div>
+                                        <span>09</span>
+                                    </div>
+
+                                    <div class="bar-column">
+                                        <div class="bar" style="height:49%"></div>
+                                        <span>10</span>
+                                    </div>
+
+                                    <div class="bar-column">
+                                        <div class="bar" style="height:72%"></div>
+                                        <span>11</span>
+                                    </div>
+
+                                    <div class="bar-column">
+                                        <div class="bar active" style="height:84%"></div>
+                                        <span>12</span>
+                                    </div>
+
+                                    <div class="bar-column">
+                                        <div class="bar" style="height:64%"></div>
+                                        <span>13</span>
+                                    </div>
+
+                                    <div class="bar-column">
+                                        <div class="bar" style="height:77%"></div>
+                                        <span>14</span>
+                                    </div>
+
+                                    <div class="bar-column">
+                                        <div class="bar" style="height:53%"></div>
+                                        <span>15</span>
+                                    </div>
+
+                                    <div class="bar-column">
+                                        <div class="bar" style="height:69%"></div>
+                                        <span>16</span>
+                                    </div>
+
+                                    <div class="bar-column">
+                                        <div class="bar" style="height:58%"></div>
+                                        <span>17</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chart-legend">
+                            <span><i class="legend-dot"></i> Workflow activity</span>
+                            <span>Peak: 12:00–14:00</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRIORITY ACTIONS -->
+                    <article class="panel priorities-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-kicker">ATTENTION QUEUE</span>
+                                <h2>Priority actions</h2>
+                                <p>Items requiring operational attention.</p>
+                            </div>
+
+                            <span class="live-label">
+                                <i></i>
+                                Live
+                            </span>
+
+                        </div>
+
+                        <div class="priority-list">
+
+                            <button class="priority-item" type="button" data-page-link="risks">
+                                <span class="priority-status critical"></span>
+
+                                <span class="priority-copy">
+                                    <strong>Payment fallback capacity</strong>
+                                    <small>Critical · Checkout operations</small>
+                                </span>
+
+                                <span class="priority-arrow">→</span>
+                            </button>
+
+
+                            <button class="priority-item" type="button" data-page-link="workflows">
+                                <span class="priority-status high"></span>
+
+                                <span class="priority-copy">
+                                    <strong>Refund approval queue</strong>
+                                    <small>High · 14 requests pending</small>
+                                </span>
+
+                                <span class="priority-arrow">→</span>
+                            </button>
+
+
+                            <button class="priority-item" type="button" data-page-link="team">
+                                <span class="priority-status medium"></span>
+
+                                <span class="priority-copy">
+                                    <strong>Support workload balancing</strong>
+                                    <small>Medium · 93% team utilization</small>
+                                </span>
+
+                                <span class="priority-arrow">→</span>
+                            </button>
+
+
+                            <button class="priority-item" type="button" data-page-link="reports">
+                                <span class="priority-status low"></span>
+
+                                <span class="priority-copy">
+                                    <strong>Weekly operating review</strong>
+                                    <small>Low · Due today at 17:00</small>
+                                </span>
+
+                                <span class="priority-arrow">→</span>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- RISK SUMMARY -->
+                    <article class="panel risk-summary-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-kicker">RISK EXPOSURE</span>
+                                <h2>Risk summary</h2>
+                                <p>Current operational exposure by severity.</p>
+                            </div>
+
+                            <button class="panel-link" type="button" data-page-link="risks">
+                                Open monitor →
+                            </button>
+                        </div>
+
+                        <div class="risk-summary">
+
+                            <div class="risk-level critical">
+                                <strong>1</strong>
+                                <span>Critical</span>
+                            </div>
+
+                            <div class="risk-level high">
+                                <strong>2</strong>
+                                <span>High</span>
+                            </div>
+
+                            <div class="risk-level medium">
+                                <strong>4</strong>
+                                <span>Medium</span>
+                            </div>
+
+                            <div class="risk-level resolved">
+                                <strong>11</strong>
+                                <span>Resolved</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ACTIVITY SUMMARY -->
+                    <article class="panel activity-summary-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-kicker">RECENT ACTIVITY</span>
+                                <h2>Operating rhythm</h2>
+                                <p>Latest changes across the workspace.</p>
+                            </div>
+
+                            <button class="panel-link" type="button" data-page-link="activity">
+                                View activity →
+                            </button>
+
+                        </div>
+
+                        <div class="mini-activity">
+
+                            <div class="mini-activity-item">
+                                <span class="activity-avatar blue">AK</span>
+                                <div>
+                                    <strong>Refund workflow updated</strong>
+                                    <small>Arjun Kumar · 4 min ago</small>
+                                </div>
+                            </div>
+
+                            <div class="mini-activity-item">
+                                <span class="activity-avatar purple">NS</span>
+                                <div>
+                                    <strong>Payment risk escalated</strong>
+                                    <small>Neha Shah · 11 min ago</small>
+                                </div>
+                            </div>
+
+                            <div class="mini-activity-item">
+                                <span class="activity-avatar green">RM</span>
+                                <div>
+                                    <strong>Capacity review completed</strong>
+                                    <small>Riya Menon · 23 min ago</small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 WORKFLOWS
+            =================================================== -->
+            <section class="page-section" id="page-workflows">
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="eyebrow">WORKFLOW INTELLIGENCE</span>
+                        <h1>Workflows</h1>
+                        <p>
+                            Track execution health, SLA performance and operational bottlenecks.
+                        </p>
+                    </div>
+
+                    <div class="page-actions">
+                        <button class="secondary-button" type="button" data-action="filter">
+                            Filter
+                        </button>
+
+                        <button class="primary-button" type="button" data-action="new-workflow">
+                            + New workflow
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="metric-grid workflow-metrics">
+
+                    <article class="metric-card">
+                        <div class="metric-card-top">
+                            <span>RUNNING NOW</span>
+                            <span class="metric-icon">▶</span>
+                        </div>
+                        <strong class="metric-value">14</strong>
+                        <div class="metric-footer positive">
+                            <span>Active execution</span>
+                        </div>
+                    </article>
+
+
+                    <article class="metric-card">
+                        <div class="metric-card-top">
+                            <span>SLA HEALTH</span>
+                            <span class="metric-icon">✓</span>
+                        </div>
+                        <strong class="metric-value">89%</strong>
+                        <div class="metric-footer positive">
+                            <span>Above 85% target</span>
+                        </div>
+                    </article>
+
+
+                    <article class="metric-card">
+                        <div class="metric-card-top">
+                            <span>BLOCKED</span>
+                            <span class="metric-icon warning">!</span>
+                        </div>
+                        <strong class="metric-value">3</strong>
+                        <div class="metric-footer warning-text">
+                            <span>Needs intervention</span>
+                        </div>
+                    </article>
+
+
+                    <article class="metric-card">
+                        <div class="metric-card-top">
+                            <span>COMPLETED</span>
+                            <span class="metric-icon">✓</span>
+                        </div>
+                        <strong class="metric-value">31</strong>
+                        <div class="metric-footer positive">
+                            <span>Today</span>
+                        </div>
+                    </article>
+
+                </div>
+
+
+                <article class="panel full-width-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-kicker">ACTIVE OPERATIONS</span>
+                            <h2>Workflow execution</h2>
+                            <p>
+                                Current workflows ranked by operational importance.
+                            </p>
+                        </div>
+
+                        <div class="table-tools">
+                            <span class="table-status">
+                                <i></i>
+                                Live data
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table class="data-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Workflow</th>
+                                    <th>Owner</th>
+                                    <th>Progress</th>
+                                    <th>SLA</th>
+                                    <th>Last activity</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <div class="table-primary">
+                                            <span class="table-icon blue">RF</span>
+                                            <div>
+                                                <strong>Customer Refunds</strong>
+                                                <small>FIN-204 · Finance</small>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>Arjun Kumar</td>
+
+                                    <td>
+                                        <div class="progress-cell">
+                                            <span>92%</span>
+                                            <div class="progress-track">
+                                                <i style="width:92%"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td><span class="sla good">Within SLA</span></td>
+                                    <td>3 min ago</td>
+                                    <td><span class="status-badge running">Running</span></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div class="table-primary">
+                                            <span class="table-icon purple">CO</span>
+                                            <div>
+                                                <strong>Checkout Recovery</strong>
+                                                <small>PAY-118 · Payments</small>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>Neha Shah</td>
+
+                                    <td>
+                                        <div class="progress-cell">
+                                            <span>61%</span>
+                                            <div class="progress-track">
+                                                <i style="width:61%"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td><span class="sla watch">At risk</span></td>
+                                    <td>8 min ago</td>
+                                    <td><span class="status-badge blocked">Blocked</span></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div class="table-primary">
+                                            <span class="table-icon green">PO</span>
+                                            <div>
+                                                <strong>Purchase Orders</strong>
+                                                <small>PRC-091 · Procurement</small>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>Riya Menon</td>
+
+                                    <td>
+                                        <div class="progress-cell">
+                                            <span>38%</span>
+                                            <div class="progress-track">
+                                                <i style="width:38%"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td><span class="sla good">Within SLA</span></td>
+                                    <td>14 min ago</td>
+                                    <td><span class="status-badge running">Running</span></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div class="table-primary">
+                                            <span class="table-icon orange">SV</span>
+                                            <div>
+                                                <strong>Support Escalations</strong>
+                                                <small>SUP-331 · Customer Care</small>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>Vikram Rao</td>
+
+                                    <td>
+                                        <div class="progress-cell">
+                                            <span>76%</span>
+                                            <div class="progress-track">
+                                                <i style="width:76%"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td><span class="sla good">Within SLA</span></td>
+                                    <td>18 min ago</td>
+                                    <td><span class="status-badge running">Running</span></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div class="table-primary">
+                                            <span class="table-icon pink">AC</span>
+                                            <div>
+                                                <strong>Account Compliance</strong>
+                                                <small>CMP-052 · Compliance</small>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>Ananya Chen</td>
+
+                                    <td>
+                                        <div class="progress-cell">
+                                            <span>54%</span>
+                                            <div class="progress-track">
+                                                <i style="width:54%"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td><span class="sla watch">At risk</span></td>
+                                    <td>26 min ago</td>
+                                    <td><span class="status-badge review">Review</span></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ==================================================
+                 RISK MONITOR
+            =================================================== -->
+            <section class="page-section" id="page-risks">
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="eyebrow">RISK INTELLIGENCE</span>
+                        <h1>Risk monitor</h1>
+                        <p>
+                            Identify, prioritize and resolve operational exposure before it becomes an incident.
+                        </p>
+                    </div>
+
+                    <div class="page-actions">
+                        <button class="secondary-button" type="button" data-action="export">
+                            Export
+                        </button>
+
+                        <button class="primary-button" type="button" data-action="risk-scan">
+                            Run risk scan
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-overview-grid">
+
+                    <div class="risk-stat critical">
+                        <span class="risk-stat-label">CRITICAL</span>
+                        <strong>1</strong>
+                        <small>Immediate attention</small>
+                    </div>
+
+                    <div class="risk-stat high">
+                        <span class="risk-stat-label">HIGH</span>
+                        <strong>2</strong>
+                        <small>Requires action today</small>
+                    </div>
+
+                    <div class="risk-stat medium">
+                        <span class="risk-stat-label">MEDIUM</span>
+                        <strong>4</strong>
+                        <small>Monitor closely</small>
+                    </div>
+
+                    <div class="risk-stat resolved">
+                        <span class="risk-stat-label">RESOLVED</span>
+                        <strong>11</strong>
+                        <small>Closed this month</small>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-content-grid">
+
+                    <article class="panel risk-list-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-kicker">ACTIVE EXPOSURE</span>
+                                <h2>Priority risks</h2>
+                                <p>Ranked by operational impact and urgency.</p>
+                            </div>
+
+                            <span class="risk-score">
+                                Exposure score <strong>31</strong>
+                            </span>
+                        </div>
+
+
+                        <div class="risk-card-list">
+
+                            <article class="risk-card critical-card">
+
+                                <div class="risk-card-icon">!</div>
+
+                                <div class="risk-card-main">
+                                    <div class="risk-card-title">
+                                        <strong>Payment gateway degradation</strong>
+                                        <span class="severity critical">Critical</span>
+                                    </div>
+
+                                    <p>
+                                        Primary payment gateway is showing elevated latency during peak checkout traffic.
+                                    </p>
+
+                                    <div class="risk-card-meta">
+                                        <span>Owner: Neha Shah</span>
+                                        <span>Detected 12 min ago</span>
+                                    </div>
+                                </div>
+
+                                <button class="risk-action" type="button" data-action="risk-details">
+                                    Review →
+                                </button>
+
+                            </article>
+
+
+                            <article class="risk-card high-card">
+
+                                <div class="risk-card-icon">↑</div>
+
+                                <div class="risk-card-main">
+                                    <div class="risk-card-title">
+                                        <strong>Refund queue approaching SLA</strong>
+                                        <span class="severity high">High</span>
+                                    </div>
+
+                                    <p>
+                                        Approval volume has increased 22% and may exceed the four-hour processing target.
+                                    </p>
+
+                                    <div class="risk-card-meta">
+                                        <span>Owner: Arjun Kumar</span>
+                                        <span>Detected 31 min ago</span>
+                                    </div>
+                                </div>
+
+                                <button class="risk-action" type="button" data-action="risk-details">
+                                    Review →
+                                </button>
+
+                            </article>
+
+
+                            <article class="risk-card high-card">
+
+                                <div class="risk-card-icon">◷</div>
+
+                                <div class="risk-card-main">
+                                    <div class="risk-card-title">
+                                        <strong>Support capacity imbalance</strong>
+                                        <span class="severity high">High</span>
+                                    </div>
+
+                                    <p>
+                                        Customer support utilization has reached 93% across the escalation queue.
+                                    </p>
+
+                                    <div class="risk-card-meta">
+                                        <span>Owner: Vikram Rao</span>
+                                        <span>Detected 48 min ago</span>
+                                    </div>
+                                </div>
+
+                                <button class="risk-action" type="button" data-action="risk-details">
+                                    Review →
+                                </button>
+
+                            </article>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="panel exposure-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-kicker">EXPOSURE PROFILE</span>
+                                <h2>Operational areas</h2>
+                                <p>Risk distribution by function.</p>
+                            </div>
+                        </div>
+
+                        <div class="exposure-list">
+
+                            <div class="exposure-item">
+                                <div>
+                                    <strong>Payment</strong>
+                                    <span>Critical exposure</span>
+                                </div>
+
+                                <div class="exposure-bar">
+                                    <i style="width:91%"></i>
+                                </div>
+
+                                <strong>91</strong>
+                            </div>
+
+
+                            <div class="exposure-item">
+                                <div>
+                                    <strong>Procurement</strong>
+                                    <span>Moderate exposure</span>
+                                </div>
+
+                                <div class="exposure-bar">
+                                    <i style="width:58%"></i>
+                                </div>
+
+                                <strong>58</strong>
+                            </div>
+
+
+                            <div class="exposure-item">
+                                <div>
+                                    <strong>Support</strong>
+                                    <span>High exposure</span>
+                                </div>
+
+                                <div class="exposure-bar">
+                                    <i style="width:74%"></i>
+                                </div>
+
+                                <strong>74</strong>
+                            </div>
+
+
+                            <div class="exposure-item">
+                                <div>
+                                    <strong>Compliance</strong>
+                                    <span>Low exposure</span>
+                                </div>
+
+                                <div class="exposure-bar">
+                                    <i style="width:32%"></i>
+                                </div>
+
+                                <strong>32</strong>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+            <!-- ==================================================
+                 ACTIVITY
+            =================================================== -->
+            <section class="page-section" id="page-activity">
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="eyebrow">OPERATIONAL TIMELINE</span>
+                        <h1>Activity</h1>
+                        <p>
+                            Follow the decisions, workflow changes and risk events shaping operations.
+                        </p>
+                    </div>
+
+                    <div class="page-actions">
+                        <button class="secondary-button" type="button" data-action="filter">
+                            Filter activity
+                        </button>
+
+                        <button class="primary-button" type="button" data-action="refresh">
+                            ↻ Refresh
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="activity-layout">
+
+                    <article class="panel activity-feed-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-kicker">LIVE FEED</span>
+                                <h2>Recent activity</h2>
+                                <p>Latest operational events across NexaFlow.</p>
+                            </div>
+
+                            <span class="live-label">
+                                <i></i>
+                                Live
+                            </span>
+                        </div>
+
+
+                        <div class="activity-feed">
+
+                            <div class="feed-item">
+                                <div class="feed-marker blue"></div>
+
+                                <div class="feed-content">
+                                    <strong>Refund workflow completed a processing stage</strong>
+                                    <p>
+                                        48 customer refund requests moved into finance approval.
+                                    </p>
+                                    <span>Arjun Kumar · 4 minutes ago</span>
+                                </div>
+                            </div>
+
+
+                            <div class="feed-item">
+                                <div class="feed-marker red"></div>
+
+                                <div class="feed-content">
+                                    <strong>Payment gateway risk escalated</strong>
+                                    <p>
+                                        Latency crossed the operational threshold for the checkout workflow.
+                                    </p>
+                                    <span>Neha Shah · 11 minutes ago</span>
+                                </div>
+                            </div>
+
+
+                            <div class="feed-item">
+                                <div class="feed-marker green"></div>
+
+                                <div class="feed-content">
+                                    <strong>Team capacity review completed</strong>
+                                    <p>
+                                        Support and finance workloads were rebalanced across available owners.
+                                    </p>
+                                    <span>Riya Menon · 23 minutes ago</span>
+                                </div>
+                            </div>
+
+
+                            <div class="feed-item">
+                                <div class="feed-marker purple"></div>
+
+                                <div class="feed-content">
+                                    <strong>Procurement workflow entered execution</strong>
+                                    <p>
+                                        Three purchase orders moved from review to supplier confirmation.
+                                    </p>
+                                    <span>Vikram Rao · 41 minutes ago</span>
+                                </div>
+                            </div>
+
+
+                            <div class="feed-item">
+                                <div class="feed-marker orange"></div>
+
+                                <div class="feed-content">
+                                    <strong>Compliance check resolved</strong>
+                                    <p>
+                                        Account verification exception was reviewed and closed.
+                                    </p>
+                                    <span>Ananya Chen · 1 hour ago</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <aside class="activity-side">
+
+                        <article class="panel rhythm-panel">
+
+                            <div class="panel-header">
+                                <div>
+                                    <span class="panel-kicker">OPERATING RHYTHM</span>
+                                    <h2>Today at a glance</h2>
+                                </div>
+                            </div>
+
+                            <div class="rhythm-list">
+
+                                <div class="rhythm-item">
+                                    <strong>64</strong>
+                                    <span>Workflow updates</span>
+                                </div>
+
+                                <div class="rhythm-item">
+                                    <strong>9</strong>
+                                    <span>Risk events</span>
+                                </div>
+
+                                <div class="rhythm-item">
+                                    <strong>16</strong>
+                                    <span>Decisions</span>
+                                </div>
+
+                                <div class="rhythm-item">
+                                    <strong>12</strong>
+                                    <span>System events</span>
+                                </div>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="panel decision-panel">
+
+                            <div class="panel-header">
+                                <div>
+                                    <span class="panel-kicker">DECISION LOG</span>
+                                    <h2>Latest decision</h2>
+                                </div>
+                            </div>
+
+                            <div class="decision-card">
+                                <span class="decision-tag">OPERATIONS</span>
+
+                                <h3>Route checkout traffic through fallback capacity</h3>
+
+                                <p>
+                                    A temporary routing rule will protect checkout availability while payment latency is investigated.
+                                </p>
+
+                                <div class="decision-owner">
+                                    <span class="avatar small-avatar">NS</span>
+
+                                    <div>
+                                        <strong>Neha Shah</strong>
+                                        <span>11 minutes ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </article>
+
+                    </aside>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 REPORTS
+            =================================================== -->
+            <section class="page-section" id="page-reports">
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="eyebrow">OPERATIONAL ANALYTICS</span>
+                        <h1>Reports</h1>
+                        <p>
+                            Turn operational signals into decisions and measurable improvements.
+                        </p>
+                    </div>
+
+                    <div class="page-actions">
+                        <button class="secondary-button" type="button" data-action="export">
+                            Export PDF
+                        </button>
+
+                        <button class="primary-button" type="button" data-action="report">
+                            Create report
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="report-highlight">
+
+                    <div>
+                        <span class="panel-kicker">EFFICIENCY INDEX</span>
+                        <strong>76.8</strong>
+                        <p>
+                            Overall operating efficiency is improving, with workflow completion and response time showing the strongest gains.
+                        </p>
+                    </div>
+
+                    <div class="highlight-trend">
+                        <span>↑ 6.2%</span>
+                        <small>month over month</small>
+                    </div>
+
+                </div>
+
+
+                <div class="report-grid">
+
+                    <article class="panel report-card">
+
+                        <div class="report-card-icon blue">↗</div>
+
+                        <div>
+                            <span class="panel-kicker">WORKFLOW EFFICIENCY</span>
+                            <strong>84.6%</strong>
+                            <p>
+                                Percentage of workflows completing within their expected operating window.
+                            </p>
+                        </div>
+
+                        <div class="report-progress">
+                            <i style="width:84.6%"></i>
+                        </div>
+
+                    </article>
+
+
+                    <article class="panel report-card">
+
+                        <div class="report-card-icon green">✓</div>
+
+                        <div>
+                            <span class="panel-kicker">SLA PERFORMANCE</span>
+                            <strong>91.2%</strong>
+                            <p>
+                                Service-level commitments currently being met across active operations.
+                            </p>
+                        </div>
+
+                        <div class="report-progress">
+                            <i style="width:91.2%"></i>
+                        </div>
+
+                    </article>
+
+
+                    <article class="panel report-card">
+
+                        <div class="report-card-icon orange">!</div>
+
+                        <div>
+                            <span class="panel-kicker">RISK RESOLUTION</span>
+                            <strong>73%</strong>
+                            <p>
+                                Active risk items resolved or mitigated within their target response window.
+                            </p>
+                        </div>
+
+                        <div class="report-progress">
+                            <i style="width:73%"></i>
+                        </div>
+
+                    </article>
+
+
+                    <article class="panel report-card">
+
+                        <div class="report-card-icon purple">♙</div>
+
+                        <div>
+                            <span class="panel-kicker">TEAM CAPACITY</span>
+                            <strong>68%</strong>
+                            <p>
+                                Average available capacity across the four core operating functions.
+                            </p>
+                        </div>
+
+                        <div class="report-progress">
+                            <i style="width:68%"></i>
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <article class="panel recommendations-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <span class="panel-kicker">MANAGEMENT RECOMMENDATIONS</span>
+                            <h2>What needs attention next</h2>
+                            <p>
+                                Recommendations generated from current operational signals.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="recommendation-grid">
+
+                        <article class="recommendation">
+                            <span class="recommendation-number">01</span>
+
+                            <div>
+                                <strong>Stabilize payment operations</strong>
+                                <p>
+                                    Route a portion of checkout traffic through the fallback capacity until gateway latency returns below the alert threshold.
+                                </p>
+                            </div>
+
+                            <span class="recommendation-priority high">High</span>
+                        </article>
+
+
+                        <article class="recommendation">
+                            <span class="recommendation-number">02</span>
+
+                            <div>
+                                <strong>Rebalance support capacity</strong>
+                                <p>
+                                    Move two available team members into the escalation queue during the afternoon demand peak.
+                                </p>
+                            </div>
+
+                            <span class="recommendation-priority medium">Medium</span>
+                        </article>
+
+
+                        <article class="recommendation">
+                            <span class="recommendation-number">03</span>
+
+                            <div>
+                                <strong>Automate refund approvals</strong>
+                                <p>
+                                    Identify low-risk refund categories suitable for automatic approval to reduce manual processing volume.
+                                </p>
+                            </div>
+
+                            <span class="recommendation-priority medium">Medium</span>
+                        </article>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ==================================================
+                 TEAM
+            =================================================== -->
+            <section class="page-section" id="page-team">
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="eyebrow">RESOURCE INTELLIGENCE</span>
+                        <h1>Team</h1>
+                        <p>
+                            Understand workload, availability and ownership across operations.
+                        </p>
+                    </div>
+
+                    <div class="page-actions">
+                        <button class="secondary-button" type="button" data-action="team-export">
+                            Export roster
+                        </button>
+
+                        <button class="primary-button" type="button" data-action="assign">
+                            Assign work
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="team-summary-grid">
+
+                    <article class="team-summary">
+                        <span>TEAM MEMBERS</span>
+                        <strong>12</strong>
+                        <small>Across four functions</small>
+                    </article>
+
+                    <article class="team-summary">
+                        <span>AVG WORKLOAD</span>
+                        <strong>71%</strong>
+                        <small>Healthy utilization</small>
+                    </article>
+
+                    <article class="team-summary">
+                        <span>UNASSIGNED</span>
+                        <strong>6</strong>
+                        <small>Items need ownership</small>
+                    </article>
+
+                    <article class="team-summary">
+                        <span>AVAILABLE CAPACITY</span>
+                        <strong>29%</strong>
+                        <small>Ready for new work</small>
+                    </article>
+
+                </div>
+
+
+                <article class="panel team-list-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <span class="panel-kicker">WORKLOAD MAP</span>
+                            <h2>Team capacity</h2>
+                            <p>Current utilization across key operational owners.</p>
+                        </div>
+
+                        <span class="team-legend">
+                            <i></i>
+                            Capacity healthy
+                        </span>
+                    </div>
+
+
+                    <div class="team-list">
+
+                        <div class="team-member">
+
+                            <div class="member-profile">
+                                <span class="member-avatar blue">AK</span>
+
+                                <div>
+                                    <strong>Arjun Kumar</strong>
+                                    <span>Finance Operations</span>
+                                </div>
+                            </div>
+
+                            <div class="member-workload">
+                                <div>
+                                    <span>Workload</span>
+                                    <strong>86%</strong>
+                                </div>
+
+                                <div class="workload-track">
+                                    <i style="width:86%"></i>
+                                </div>
+                            </div>
+
+                            <span class="member-status busy">High load</span>
+
+                        </div>
+
+
+                        <div class="team-member">
+
+                            <div class="member-profile">
+                                <span class="member-avatar purple">NS</span>
+
+                                <div>
+                                    <strong>Neha Shah</strong>
+                                    <span>Payments Operations</span>
+                                </div>
+                            </div>
+
+                            <div class="member-workload">
+                                <div>
+                                    <span>Workload</span>
+                                    <strong>78%</strong>
+                                </div>
+
+                                <div class="workload-track">
+                                    <i style="width:78%"></i>
+                                </div>
+                            </div>
+
+                            <span class="member-status balanced">Balanced</span>
+
+                        </div>
+
+
+                        <div class="team-member">
+
+                            <div class="member-profile">
+                                <span class="member-avatar green">RM</span>
+
+                                <div>
+                                    <strong>Riya Menon</strong>
+                                    <span>Procurement Operations</span>
+                                </div>
+                            </div>
+
+                            <div class="member-workload">
+                                <div>
+                                    <span>Workload</span>
+                                    <strong>93%</strong>
+                                </div>
+
+                                <div class="workload-track">
+                                    <i style="width:93%"></i>
+                                </div>
+                            </div>
+
+                            <span class="member-status overloaded">Overloaded</span>
+
+                        </div>
+
+
+                        <div class="team-member">
+
+                            <div class="member-profile">
+                                <span class="member-avatar orange">VR</span>
+
+                                <div>
+                                    <strong>Vikram Rao</strong>
+                                    <span>Customer Support</span>
+                                </div>
+                            </div>
+
+                            <div class="member-workload">
+                                <div>
+                                    <span>Workload</span>
+                                    <strong>64%</strong>
+                                </div>
+
+                                <div class="workload-track">
+                                    <i style="width:64%"></i>
+                                </div>
+                            </div>
+
+                            <span class="member-status available">Available</span>
+
+                        </div>
+
+
+                        <div class="team-member">
+
+                            <div class="member-profile">
+                                <span class="member-avatar pink">AC</span>
+
+                                <div>
+                                    <strong>Ananya Chen</strong>
+                                    <span>Compliance Operations</span>
+                                </div>
+                            </div>
+
+                            <div class="member-workload">
+                                <div>
+                                    <span>Workload</span>
+                                    <strong>57%</strong>
+                                </div>
+
+                                <div class="workload-track">
+                                    <i style="width:57%"></i>
+                                </div>
+                            </div>
+
+                            <span class="member-status available">Available</span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ==================================================
+                 SETTINGS
+            =================================================== -->
+            <section class="page-section" id="page-settings">
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="eyebrow">WORKSPACE CONTROL</span>
+                        <h1>Settings</h1>
+                        <p>
+                            Configure workspace preferences and the NexaFlow experience.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="settings-layout">
+
+                    <div class="settings-main">
+
+
+                        <!-- THEME -->
+                        <article class="panel settings-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+                                    <span class="panel-kicker">APPEARANCE</span>
+                                    <h2>Theme & appearance</h2>
+                                    <p>
+                                        Choose how NexaFlow looks across your workspace.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="settings-row">
+
+                                <div>
+                                    <strong>Theme</strong>
+                                    <p>
+                                        Choose between system, light, or dark appearance.
+                                    </p>
+                                </div>
+
+                                <select id="themeSelect" class="theme-select">
+    <option value="dark">Dark</option>
+    <option value="light">Light</option>
+</select>
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- WORKSPACE -->
+                        <article class="panel settings-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+                                    <span class="panel-kicker">WORKSPACE</span>
+                                    <h2>Workspace information</h2>
+                                    <p>
+                                        Basic information for the active operations workspace.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="settings-form-grid">
+
+                                <label class="field">
+                                    <span>Workspace name</span>
+                                    <input type="text" value="Northstar Workspace">
+                                </label>
+
+                                <label class="field">
+                                    <span>Workspace code</span>
+                                    <input type="text" value="NXF-OPS" readonly>
+                                </label>
+
+                                <label class="field">
+                                    <span>Operating region</span>
+                                    <select>
+                                        <option>India — IST</option>
+                                        <option>Singapore — SGT</option>
+                                        <option>United Kingdom — GMT</option>
+                                    </select>
+                                </label>
+
+                                <label class="field">
+                                    <span>Week starts on</span>
+                                    <select>
+                                        <option>Monday</option>
+                                        <option>Sunday</option>
+                                    </select>
+                                </label>
+
+                            </div>
+
+                            <div class="settings-actions">
+                                <button class="primary-button" type="button" data-action="save-settings">
+                                    Save changes
+                                </button>
+                            </div>
+
+                        </article>
+
+
+                        <!-- NOTIFICATIONS -->
+                        <article class="panel settings-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+                                    <span class="panel-kicker">NOTIFICATIONS</span>
+                                    <h2>Operational alerts</h2>
+                                    <p>
+                                        Decide which operational signals should surface immediately.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="toggle-list">
+
+                                <label class="toggle-row">
+
+                                    <span>
+                                        <strong>Critical risk alerts</strong>
+                                        <small>Notify when a critical operational risk is detected.</small>
+                                    </span>
+
+                                    <input type="checkbox" checked>
+                                    <i class="toggle-switch"></i>
+
+                                </label>
+
+
+                                <label class="toggle-row">
+
+                                    <span>
+                                        <strong>SLA breach warnings</strong>
+                                        <small>Notify when active workflows approach their SLA threshold.</small>
+                                    </span>
+
+                                    <input type="checkbox" checked>
+                                    <i class="toggle-switch"></i>
+
+                                </label>
+
+
+                                <label class="toggle-row">
+
+                                    <span>
+                                        <strong>Daily operating summary</strong>
+                                        <small>Receive a daily overview of workflow and team performance.</small>
+                                    </span>
+
+                                    <input type="checkbox" checked>
+                                    <i class="toggle-switch"></i>
+
+                                </label>
+
+
+                                <label class="toggle-row">
+
+                                    <span>
+                                        <strong>Team capacity alerts</strong>
+                                        <small>Notify when a team member crosses the workload threshold.</small>
+                                    </span>
+
+                                    <input type="checkbox">
+                                    <i class="toggle-switch"></i>
+
+                                </label>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+                    <aside class="settings-side">
+
+                        <article class="panel settings-info-card">
+
+                            <span class="panel-kicker">SYSTEM</span>
+                            <h2>NexaFlow status</h2>
+
+                            <div class="system-health-large">
+                                <span></span>
+                                <strong>All systems operational</strong>
+                            </div>
+
+                            <p>
+                                Core workspace services are currently operating normally.
+                            </p>
+
+                            <div class="settings-info-line">
+                                <span>Last system check</span>
+                                <strong>2 min ago</strong>
+                            </div>
+
+                            <div class="settings-info-line">
+                                <span>Workspace version</span>
+                                <strong>1.0.0</strong>
+                            </div>
+
+                        </article>
+
+
+                        <article class="panel settings-info-card">
+
+                            <span class="panel-kicker">DESIGN SYSTEM</span>
+                            <h2>Interface principles</h2>
+
+                            <ul class="principles-list">
+                                <li>Readable by default</li>
+                                <li>Responsive across devices</li>
+                                <li>Accessible interaction patterns</li>
+                                <li>Consistent visual tokens</li>
+                                <li>Operational clarity first</li>
+                            </ul>
+
+                        </article>
+
+                    </aside>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+        <!-- FOOTER -->
+        <footer class="app-footer">
+            <span>© 2026 NexaFlow Operations Intelligence</span>
+
+            <div>
+                <span>Operational workspace</span>
+                <span>•</span>
+                <span>v1.0.0</span>
+            </div>
+        </footer>
+
+    </div>
+
+</div>
+
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
