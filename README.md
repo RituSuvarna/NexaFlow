@@ -173,16 +173,8 @@ No backend is required for the current prototype.
 
 ```text
 NexaFlow/
-│
 ├── index.html
+├── style.css
+├── script.js
 ├── README.md
-├── LICENSE
-│
-├── css/
-│   └── style.css
-│
-├── js/
-│   └── script.js
-│
-└── assets/
-    └── icons/
+└── LICENSE
